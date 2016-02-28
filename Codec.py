@@ -33,20 +33,3 @@ def decodec(number):
         text = table[number & 0b11111111] + text
         number = number >> 8
     return text
-
-def composeMessage(text):
-    file = open('low_entropy_message_begin.txt', 'r')
-    begin = file.read()
-    file.close()
-    file = open('low_entropy_message_end.txt', 'r')
-    end = file.read()
-    file.close()
-    return begin + str(codec(text)) + end
-
-def deComposeMessage(text):
-    string = ''
-    for c in text:
-        if c.isdigit():
-            string = string + c
-    return decodec(int(string))
-
